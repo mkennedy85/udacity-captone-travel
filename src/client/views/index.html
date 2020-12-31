@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>NLP App</title>
+    </head>
+
+    <body>
+        <header>
+            <div>
+                <img id="logo" />
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <form class="sentence" onsubmit="return handleSubmit(event)">
+                    <input id="name" type="text" name="input" value="" placeholder="Please provide a body of text to analyze." />
+                    <input type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)" />
+                </form>
+            </section>
+
+            <section>
+                <strong>Results:</strong>
+                <div id="results"></div>
+                <p id="meaning_cloud_credit">
+                    <em>* These results provided courtesy of <a href="https://meaningcloud.com">Meaning Cloud</a></em>
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>Developed by Michael Kennedy</p>
+        </footer>
+        <script>
+            // Check that service workers are supported
+            if ("serviceWorker" in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker.register("/service-worker.js");
+                });
+            }
+        </script>
+    </body>
+</html>
