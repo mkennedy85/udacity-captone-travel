@@ -1,9 +1,8 @@
-import { checkForPunctuation } from "./js/puncChecker";
 import { handleSubmit } from "./js/formHandler";
 
 import logo from "./images/memoji_mike_optimized.png";
 
-export { checkForPunctuation, handleSubmit, logo };
+export { handleSubmit, logo };
 
 import "./styles/resets.scss";
 import "./styles/base.scss";

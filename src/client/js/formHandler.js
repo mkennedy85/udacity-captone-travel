@@ -2,47 +2,40 @@ function handleSubmit(event) {
     event.preventDefault();
 
     // check what text was put into the form field
-    let formText = document.getElementById("name").value;
-    let validSentence = Client.checkForPunctuation(formText);
+    let placename = document.getElementById("placename").value;
+    let country = document.getElementById("country").value;
 
-    if (validSentence) {
-        const postTxt = async (txt = "") => {
-            const request = await fetch(`/analysis?txt=${txt}`, {
-                method: "POST",
-                credentials: "same-origin",
-            });
+    const postRequest = async (placename = "", country = "") => {
+        const request = await fetch(`/weather?placename=${placename}&country=${country}`, {
+            method: "POST",
+            credentials: "same-origin",
+        });
 
-            try {
-                let results = await request.json();
-                return results;
-            } catch (error) {
-                console.log("error", error);
-            }
-        };
+        try {
+            let results = await request.json();
+            return results;
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
 
-        const formatTxt = function (txt) {
-            let formattedStr = `
-            <strong>Model:</strong> ${txt.model}</br>
-            <strong>Agreement:</strong> ${txt.agreement}</br>
-            <strong>Score:</strong> ${txt.score_tag}</br>
-            <strong>Subjectivity:</strong> ${txt.subjectivity}</br>
-            <strong>Irony:</strong> ${txt.irony}</br>
-            <strong>Confidence:</strong> ${txt.confidence}</br>
-            `;
-            return formattedStr;
-        };
+    const formatResults = function (results) {
+        let formattedStr = `
+        <strong>Low:</strong> ${results.weather.low_temp}&#176</br>
+        <strong>High:</strong> ${results.weather.max_temp}&#176</br>
+        <strong>Clouds:</strong> ${results.weather.clouds}%</br>
+        <img src=${results.pic} alt="Not found">
+        `;
+        return formattedStr;
+    };
 
-        postTxt(formText)
-            .then(function (res) {
-                return formatTxt(res);
-            })
-            .then(function (res) {
-                document.getElementById("results").innerHTML = res;
-            });
-    } else {
-        alert("Please use proper punctuation.");
-        document.getElementById("results").innerHTML = "";
-    }
+    postRequest(placename = placename, country = country)
+        .then(function (results) {
+            return formatResults(results);
+        })
+        .then(function (results) {
+            document.getElementById("results").innerHTML = results;
+        });
 }
 
 export { handleSubmit };
