@@ -41,4 +41,4 @@ npm run start
 
 ## Deployed
 
-This app has been deployed to Heroku and can be found [here](https://mighty-dusk-28999.herokuapp.com).
+This app has been deployed to Heroku and can be found [here](https://arcane-beach-15568.herokuapp.com).
