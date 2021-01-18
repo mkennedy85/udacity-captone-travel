@@ -34,64 +34,64 @@ section h2 {
     max-width: 800px;
 }
 
-.flex-outer,
-.flex-inner {
+.form__outer,
+.form__inner {
   list-style-type: none;
   padding: 0;
 }
 
-.flex-outer {
+.form__outer {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.flex-outer li,
-.flex-inner {
+.form__outer li,
+.form__inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.flex-inner {
+.form__inner {
   padding: 0 8px;
   justify-content: space-between;  
 }
 
-.flex-outer > li:not(:last-child) {
+.form__outer > li:not(:last-child) {
   margin-bottom: 20px;
 }
 
-.flex-outer li label,
-.flex-outer li p {
+.form__outer li label,
+.form__outer li p {
   padding: 8px;
   font-weight: 300;
   letter-spacing: .09em;
   text-transform: uppercase;
 }
 
-.flex-outer > li > label,
-.flex-outer li p {
+.form__outer > li > label,
+.form__outer li p {
   flex: 1 0 120px;
   font-size: 1em;
   max-width: 220px;
 }
 
-.flex-outer > li > label + *,
-.flex-inner {
+.form__outer > li > label + *,
+.form__inner {
   flex: 1 0 220px;
 }
 
-.flex-outer li p {
+.form__outer li p {
   margin: 0;
 }
 
-.flex-outer li input:not([type='checkbox']),
-.flex-outer li textarea {
+.form__outer li input:not([type='checkbox']),
+.form__outer li textarea {
   padding: 15px;
   border: none;
 }
 
-.flex-outer li button {
+.form__outer li button {
   margin-left: auto;
   padding: 8px 16px;
   border: none;
@@ -102,13 +102,6 @@ section h2 {
   border-radius: 2px;
 }
 
-.flex-inner li {
+.form__inner li {
   width: 100px;
-}
-
-::-webkit-datetime-edit-text {
-  padding: 2px;
-  font-weight: 300;
-  letter-spacing: .09em;
-  text-transform: uppercase;
 }
