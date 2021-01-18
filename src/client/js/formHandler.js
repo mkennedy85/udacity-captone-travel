@@ -2,11 +2,14 @@ function handleSubmit(event) {
     event.preventDefault();
 
     // check what text was put into the form field
-    let placename = document.getElementById("placename").value;
-    let country = document.getElementById("country").value;
+    let travel__city = document.getElementById("travel__city").value;
+    let travel__country = document.getElementById("travel__country").value;
+    let travel__date = new Date(document.getElementById("travel__date").value);
+    let current__date = new Date();
+    let days__until = Math.floor((travel__date - current__date) / (1000*60*60*24) ); 
 
-    const postRequest = async (placename = "", country = "") => {
-        const request = await fetch(`/weather?placename=${placename}&country=${country}`, {
+    const postRequest = async (travel__city = "", travel__country = "") => {
+        const request = await fetch(`/weather?placename=${travel__city}&country=${travel__country}`, {
             method: "POST",
             credentials: "same-origin",
         });
@@ -16,26 +19,23 @@ function handleSubmit(event) {
             return results;
         } catch (error) {
             console.log("error", error);
+            document.getElementById("placename__result").innerHTML = `Location unavailable`;
         }
     };
 
-    const formatResults = function (results) {
-        let formattedStr = `
-        <strong>Low:</strong> ${results.weather.low_temp}&#176</br>
-        <strong>High:</strong> ${results.weather.max_temp}&#176</br>
-        <strong>Clouds:</strong> ${results.weather.clouds}%</br>
-        <img src=${results.pic} alt="Not found">
-        `;
-        return formattedStr;
+    const displayResults = function (results) {
+        document.getElementById("placename__result").innerHTML = (travel__city) ? `${travel__city}, ${travel__country}` : "Location unavailable";
+        document.getElementById("days__until").innerHTML = days__until ? `${days__until}` : "Unavailable";
+        document.getElementById("high__temp").innerHTML = results.weather.max_temp ? `${results.weather.max_temp}&#176` : "Unavailable";
+        document.getElementById("low__temp").innerHTML = results.weather.low_temp ? `${results.weather.low_temp}&#176` : "Unavailable";
+        document.getElementById("cloud__coverage").innerHTML = results.weather.clouds ? `${results.weather.clouds}%` : "Unavailable";
+        document.getElementById("trip__photo").src = `${results.pic}`;
     };
 
-    postRequest(placename = placename, country = country)
+    postRequest(travel__city = travel__city, travel__country = travel__country)
         .then(function (results) {
-            return formatResults(results);
+            displayResults(results);
         })
-        .then(function (results) {
-            document.getElementById("results").innerHTML = results;
-        });
 }
 
 export { handleSubmit };

@@ -13,10 +13,16 @@ async function getCoordinates (placename = "", country = "", username = "") {
 
   try {
     let response = await request.json();
-    let coords = {
-      lat: response.postalCodes[0].lat,
-      long: response.postalCodes[0].lng,
-    }
+    if (response.postalCodes.length === 0) {
+      var coords = {
+        location_available: false,
+      }
+    } else {
+      var coords = {
+        lat: response.postalCodes[0].lat,
+        long: response.postalCodes[0].lng,
+        location_available: true,
+    }};
     return coords;
   } catch(error) {
     console.log("error", error);

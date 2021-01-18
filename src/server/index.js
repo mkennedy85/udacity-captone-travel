@@ -35,8 +35,16 @@ app.post("/weather", function (req, res) {
 
         getCoordinates((placename = requestData.placename), (country = requestData.country), (username = process.env.GEONAME_USER))
         .then(function (coords) {
-            let weather = getWeather((key = process.env.WEATHERBITS_API_KEY), (lat = coords.lat), (lon = coords.long));
-            return weather;
+            if (coords.location_available) {
+                let weather = getWeather((key = process.env.WEATHERBITS_API_KEY), (lat = coords.lat), (lon = coords.long));
+                weather.location_available = true;
+                return weather;
+            } else {
+                let weather = {
+                    location_available: false
+                }
+                return weather;
+            }
         })
         .then(function (weather) {
             locationData = {

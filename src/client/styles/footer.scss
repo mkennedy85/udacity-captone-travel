@@ -1,11 +1,16 @@
 footer {
   position: fixed;
-  padding: 10px 0px 10px 0px;
+  margin: 0;
+  font-size: 1em;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  text-align: center;
   left: 0;
   bottom: 0;
+  padding: 10px 0px;
   width: 100%;
   background-color: #ffffff;
   color: #000000;
-  text-align: center;
   border-top: 1px solid #545454;
 }

@@ -1,22 +1,27 @@
 ## Getting started
 
-To begin using and developing this NLP app you must first clone this repo.
+To begin using and developing this Travel Planner app you must first clone this repo.
 
 `cd` into your new folder and run:
 - `npm install`
 
-## Setting up the API
+## Setting up the APIs
 
-The Meaning Cloud API requires an API key in whicch you must register for to begin using this project.
+The APIs require key in whicch you must register for to begin using this project.
 
-### Step 1: Signup for an API key
-You can find the API [here](https://www.meaningcloud.com/developer/sentiment-analysis). Once you create an account with MeaningCloud, you will be given a license key to start using the API. This API does not require an SDK, so you can skip ahead to step 4 in the instructions.
+### Step 1: Signup for API keys
+To begin developing with this project you will need to register and retrieve API keys for:
+- Geoname
+- Pixabay
+- Weatherbits
 
 ### Step 2: Environment Variables
 Next we need to declare our API keys, as well as choose a port to run the app on. This project is using `dotenv`, which means it will be looking for a `.env` file at the root of the project that will look like:
 ```
 PORT=8080
-API_KEY="Your API key"
+GEONAME_USER=geoname_username
+PIXABAY_API_KEY=asdfasdfasdf
+WEATHERBITS_API_KEY=asdfasdfasdf
 ```
 
 ### Step 3: Running the app

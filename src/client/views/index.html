@@ -2,37 +2,42 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8" />
-        <title>NLP App</title>
+        <title>Travel Planner</title>
     </head>
-
     <body>
-        <header>
-            <div>
-                <img id="logo" />
-            </div>
-        </header>
-
         <main>
-            <section>
-                <form class="sentence" onsubmit="return handleSubmit(event)">
-                    <input id="placename" type="text" name="input" value="" placeholder="Please provide a place you plan to visit." />
-                    <input id="country" type="text" name="input" value="" placeholder="Please provide the country." />
-                    <input type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)" />
-                </form>
+            <section id="trip_input">
+                <h1>Travel Planner</h1>
+                <form onsubmit="return handleSubmit(event)">
+                    <ul class="flex-outer">
+                      <li>
+                        <label for="travel__date">Dates</label>
+                        <input type="text" id="travel__date" placeholder="yyyy-mm-dd">
+                      </li>
+                      <li>
+                        <label for="travel__city">Travel City</label>
+                        <input type="text" id="travel__city" placeholder="Enter the city here">
+                      </li>
+                      <li>
+                        <label for="travel__country">Travel Country</label>
+                        <input type="text" id="travel__country" placeholder="Enter the country here">
+                      </li>
+                      <li>
+                        <button type="submit" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">Submit</button>
+                      </li>
+                    </ul>
+              </form>
             </section>
 
-            <section>
-                <strong>Results:</strong>
-                <div id="results"></div>
-                <p id="meaning_cloud_credit">
-                    <em>* These results provided courtesy of <a href="https://meaningcloud.com">Meaning Cloud</a></em>
-                </p>
+            <section id="results">
+              <h1>Results: <span id="placename__result"></span></h1>
+              <h2>Days Until: <span id="days__until">- -</span> </h2>
+              <h2>High Temp: <span id="high__temp">- -</span> </h2>
+              <h2>Low Temp: <span id="low__temp">- -</span> </h2>
+              <h2>Cloud Coverage: <span id="cloud__coverage">- -</span> </h2>
+              <img id="trip__photo" src="https://cdn.pixabay.com/photo/2016/01/09/18/27/old-1130731_1280.jpg" alt="Image not found">
             </section>
         </main>
-
-        <footer>
-            <p>Developed by Michael Kennedy</p>
-        </footer>
         <script>
             // Check that service workers are supported
             if ("serviceWorker" in navigator) {
@@ -42,5 +47,6 @@
                 });
             }
         </script>
+        <script type="text/javascript" src="main.js"></script>
     </body>
 </html>
